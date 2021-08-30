@@ -36,8 +36,8 @@ $ python3 app.py
 ```json
 {
    "python":{
-      "image_name":"python:3.9-slim-buster", //docker image name
-      "extension":"py", // extension
+      "image_name":"python:3.9-slim-buster",
+      "extension":"py",
       "is_executable":false
    },
    "java":{
