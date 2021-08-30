@@ -32,6 +32,31 @@ $ pip3 install -r requirements.txt
 ```
 $ python3 app.py
 ```
+### add new language
+```json
+{
+   "python":{
+      "image_name":"python:3.9-slim-buster", //docker image name
+      "extension":"py", // extension
+      "is_executable":false
+   },
+   "java":{
+      "image_name":"openjdk:8",
+      "extension":"java",
+      "is_executable":false
+   },
+   "go":{
+      "image_name":"golang:1.17.0-buster",
+      "extension":"go",
+      "is_executable":false
+   },
+   "bash":{
+      "image_name":"debian:buster-slim",
+      "extension":"sh",
+      "is_executable":true
+   }
+}
+```
 
 ### frontend
 you can use any server to serve static front end files.
