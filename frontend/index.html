@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style type="text/css">
+            #editor {
+                position: absolute;
+                top: 1;
+                width: 700px;
+                height: 254px;
+                right: 0;
+                bottom: 1;
+                left: 0;
+            }
+        </style>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+
+        <title>Realtime compiler</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+        <!-- Custom styles for this template -->
+        <link href="css/custom.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+    </div>
+    <div class="mx-auto order-0">
+        <a class="navbar-brand mx-auto" href="#">RCompiler</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link">Made with Flask & Docker</a>
+            </li>
+        </ul>
+    </div>
+        </nav>
+        <div class="container-fluid">
+            <main role="main" class="container">
+                <form action="none">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Please select the question</label>
+                                <select class="custom-select" id="question">
+                                    <option value="q1">Fibonacci series</option>
+                                    <option value="q2">Peg Solitaire Solver</option>
+                                    <option value="q3">Combine two list/array</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Please select the language</label>
+                                <select class="custom-select" id="language">
+                                    <option value="python" selected>Python</option>
+                                    <option value="java">Java</option>
+                                    <option value="go">Go lang</option>
+                                    <option value="bash">SHELL 🐧</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Answer</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="editor"># Python 3.x code to demonstrate star pattern
+
+# Function to demonstrate printing pattern triangle
+def triangle(n):
+	
+	# number of spaces
+	k = n - 1
+
+	# outer loop to handle number of rows
+	for i in range(0, n):
+	
+		# inner loop to handle number spaces
+		# values changing acc. to requirement
+		for j in range(0, k):
+			print(end=" ")
+	
+		# decrementing k after each loop
+		k = k - 1
+	
+		# inner loop to handle number of columns
+		# values changing acc. to outer loop
+		for j in range(0, i+1):
+		
+			# printing stars
+			print("* ", end="")
+	
+		# ending line after each row
+		print("\r")
+
+# Driver Code
+n = 5
+triangle(n)
+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group" id="result_div">
+                                <label>Result</label>
+                                <textarea readonly class="form-control" id="result" rows="10"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="process()">Submit</button>
+                </form>
+            </main>
+        </div>
+
+        <script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+            var editor = ace.edit("editor");
+            editor.setTheme("ace/theme/monokai");
+            editor.session.setMode("ace/mode/python");
+        </script>
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ace.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script type="text/javascript">
+        	jQuery(document).ready(function($) {
+        		$('#language').on('change', function() {
+                if (this.value == 'python') {
+                	code = "# Python 3.x code to demonstrate star pattern\n\n# Function to demonstrate printing pattern triangle\ndef triangle(n):\n\t\n\t# number of spaces\n\tk = n - 1\n\n\t# outer loop to handle number of rows\n\tfor i in range(0, n):\n\t\n\t\t# inner loop to handle number spaces\n\t\t# values changing acc. to requirement\n\t\tfor j in range(0, k):\n\t\t\tprint(end=\" \")\n\t\n\t\t# decrementing k after each loop\n\t\tk = k - 1\n\t\n\t\t# inner loop to handle number of columns\n\t\t# values changing acc. to outer loop\n\t\tfor j in range(0, i+1):\n\t\t\n\t\t\t# printing stars\n\t\t\tprint(\"* \", end=\"\")\n\t\n\t\t# ending line after each row\n\t\tprint(\"\\r\")\n\n# Driver Code\nn = 5\ntriangle(n)\n"
+                	editor.session.setMode("ace/mode/python");
+                } else if (this.value == 'java') {
+                	code = "/* This is a simple Java program.*/\nclass Test\n{\n    // Your program begins with a call to main().\n    public static void main(String args[])\n    {\n        System.out.println(\"Hello, World\");\n    }\n}"
+                	editor.session.setMode("ace/mode/java");
+                } else if (this.value == 'go') {
+                	code = "// This program solves the (English) peg\n// solitaire board game.\n// http://en.wikipedia.org/wiki/Peg_solitaire\n\npackage main\n\nimport \"fmt\"\n\nconst N = 11 + 1 // length of a row (+1 for \\n)\n\n// The board must be surrounded by 2 illegal\n// fields in each direction so that move()\n// doesn't need to check the board boundaries.\n// Periods represent illegal fields,\n// ● are pegs, and ○ are holes.\n\nvar board = []rune(\n\t`...........\n...........\n....●●●....\n....●●●....\n..●●●●●●●..\n..●●●○●●●..\n..●●●●●●●..\n....●●●....\n....●●●....\n...........\n...........\n`)\n\n// center is the position of the center hole if\n// there is a single one; otherwise it is -1.\nvar center int\n\nfunc init() {\n\tn := 0\n\tfor pos, field := range board {\n\t\tif field == '○' {\n\t\t\tcenter = pos\n\t\t\tn++\n\t\t}\n\t}\n\tif n != 1 {\n\t\tcenter = -1 // no single hole\n\t}\n}\n\nvar moves int // number of times move is called\n\n// move tests if there is a peg at position pos that\n// can jump over another peg in direction dir. If the\n// move is valid, it is executed and move returns true.\n// Otherwise, move returns false.\nfunc move(pos, dir int) bool {\n\tmoves++\n\tif board[pos] == '●' && board[pos+dir] == '●' && board[pos+2*dir] == '○' {\n\t\tboard[pos] = '○'\n\t\tboard[pos+dir] = '○'\n\t\tboard[pos+2*dir] = '●'\n\t\treturn true\n\t}\n\treturn false\n}\n\n// unmove reverts a previously executed valid move.\nfunc unmove(pos, dir int) {\n\tboard[pos] = '●'\n\tboard[pos+dir] = '●'\n\tboard[pos+2*dir] = '○'\n}\n\n// solve tries to find a sequence of moves such that\n// there is only one peg left at the end; if center is\n// >= 0, that last peg must be in the center position.\n// If a solution is found, solve prints the board after\n// each move in a backward fashion (i.e., the last\n// board position is printed first, all the way back to\n// the starting board position).\nfunc solve() bool {\n\tvar last, n int\n\tfor pos, field := range board {\n\t\t// try each board position\n\t\tif field == '●' {\n\t\t\t// found a peg\n\t\t\tfor _, dir := range [...]int{-1, -N, +1, +N} {\n\t\t\t\t// try each direction\n\t\t\t\tif move(pos, dir) {\n\t\t\t\t\t// a valid move was found and executed,\n\t\t\t\t\t// see if this new board has a solution\n\t\t\t\t\tif solve() {\n\t\t\t\t\t\tunmove(pos, dir)\n\t\t\t\t\t\tfmt.Println(string(board))\n\t\t\t\t\t\treturn true\n\t\t\t\t\t}\n\t\t\t\t\tunmove(pos, dir)\n\t\t\t\t}\n\t\t\t}\n\t\t\tlast = pos\n\t\t\tn++\n\t\t}\n\t}\n\t// tried each possible move\n\tif n == 1 && (center < 0 || last == center) {\n\t\t// there's only one peg left\n\t\tfmt.Println(string(board))\n\t\treturn true\n\t}\n\t// no solution found for this board\n\treturn false\n}\n\nfunc main() {\n\tif !solve() {\n\t\tfmt.Println(\"no solution found\")\n\t}\n\tfmt.Println(moves, \"moves tried\")\n}\n"
+                	editor.session.setMode("ace/mode/golang");
+
+                } else if (this.value == 'bash') {
+                	code = "# Program for Fibonacci\n# Series\n\n# Static input fo N\nN=6\n\n# First Number of the\n# Fibonacci Series\na=0\n\n# Second Number of the\n# Fibonacci Series\nb=1\n\necho \"The Fibonacci series is : \"\n\nfor (( i=0; i<N; i++ ))\ndo\n\techo -n \"$a \"\n\tfn=$((a + b))\n\ta=$b\n\tb=$fn\ndone\n# End of for loop\n"
+                	editor.session.setMode("ace/mode/sh");
+                }
+                editor.setValue(code)
+             });
+        	});
+            function process() {
+                event.preventDefault();
+                language = $("#language").val();
+                answer = editor.getSession().getValue();
+                var data = new FormData();
+                data.append("language", language);
+                data.append("answer", answer);
+                if (answer) {
+                    $.ajax({
+                        url: "http://127.0.0.1:8080/api/v1/compiler",
+                        type: "POST",
+                        beforeSend: function () {
+                            Swal.showLoading();
+                        },
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                    })
+                        .done(function (result) {
+                            $("#result").text(result.output);
+                            Swal.close();
+                        })
+                        .fail(function () {
+                            console.log("error");
+                        })
+                        .always(function () {
+                            console.log("complete");
+                        });
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        showLoaderOnConfirm: false,
+                        text: "please provide the answer",
+                    });
+                }
+            }
+        </script>
+    </body>
+</html>
